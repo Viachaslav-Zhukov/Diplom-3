@@ -41,6 +41,8 @@ public class LoginPage {
         setEmail(email);
         setPassword(password);
         clickEntryButton();
+        //Ждем пока кнопка входа исчезнет после успешного входа
+        entryButton.shouldBe(Condition.hidden);
     }
 
     //Ждем пока кнопка входа исчезнет после успешного входа

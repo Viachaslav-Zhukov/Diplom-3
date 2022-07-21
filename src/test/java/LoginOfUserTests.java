@@ -20,6 +20,10 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class LoginOfUserTests {
+    MainPage main = page(MainPage.class);
+    LoginPage login = page(LoginPage.class);
+    RegisterPage register = page(RegisterPage.class);
+    ForgotPasswordPage forgotPasswordPage = page(ForgotPasswordPage.class);
 
     //Параметризация для кроссбраузерного тестирования
     private final String browser;
@@ -51,11 +55,9 @@ public class LoginOfUserTests {
     @Test
     @DisplayName("Корректный вход с главной страницы через кнопку \"Войти в аккаунт\"")
     public void checkLoginFromMainPageViaEntryButton() {
-        MainPage main = open(MAIN_PAGE_URL, MainPage.class);
+        open(MAIN_PAGE_URL);
         main.clickAccountEntryButton();
-        LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
-        login.waitAfterEntry();
         assertEquals("After successful login user must be redirected on the main page!",
                 url(), MAIN_PAGE_URL);
     }
@@ -63,11 +65,9 @@ public class LoginOfUserTests {
     @Test
     @DisplayName("Корректный вход с главной страницы через кнопку \"Личный кабинет\"")
     public void checkLoginFromMainPageViaPersonalAccountButton() {
-        MainPage main = open(MAIN_PAGE_URL, MainPage.class);
+        open(MAIN_PAGE_URL);
         main.clickPersonalAccountButton();
-        LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
-        login.waitAfterEntry();
         assertEquals("After successful login user must be redirected on the main page!",
                 url(), MAIN_PAGE_URL);
     }
@@ -75,11 +75,9 @@ public class LoginOfUserTests {
     @Test
     @DisplayName("Корректный вход со страницы регистрации через кнопку \"Войти\"")
     public void checkLoginFromRegistrationPageViaPersonalAccountButton() {
-        RegisterPage register = open(REGISTER_PAGE_URL, RegisterPage.class);
+        open(REGISTER_PAGE_URL);
         register.clickTheEntryButton();
-        LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
-        login.waitAfterEntry();
         assertEquals("After successful login user must be redirected on the main page!",
                 url(), MAIN_PAGE_URL);
     }
@@ -87,11 +85,9 @@ public class LoginOfUserTests {
     @Test
     @DisplayName("Переход со страницы восстановления пароля через кнопку \"Войти\"")
     public void checkLoginFromForgotPasswordPageViaEntryButton() {
-        ForgotPasswordPage forgotPasswordPage = open(FORGOT_PASSWORD_URL, ForgotPasswordPage.class);
+        open(FORGOT_PASSWORD_URL);
         forgotPasswordPage.clickTheEntryButton();
-        LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
-        login.waitAfterEntry();
         assertEquals("After successful login user must be redirected on the main page!",
                 url(), MAIN_PAGE_URL);
     }

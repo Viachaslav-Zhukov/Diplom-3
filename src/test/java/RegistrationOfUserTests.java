@@ -28,7 +28,8 @@ public class RegistrationOfUserTests {
     public static Object[][] browserForTest() {
         return new Object[][]{
                 {"Chrome"},
-                {"Edge"}
+                {"Edge"},
+                {"Firefox"}
         };
     }
 
